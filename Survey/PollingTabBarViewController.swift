@@ -12,19 +12,16 @@ class PollingTabBarViewController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        
+        for childVC in children {
+            
+            if var childVC = childVC as? VoteControllerProtocol {
+                
+                childVC.voteController = voteController
+            }
+        }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    //created an instance inside this class (VoteController) and passing it to every childVC (view controller...look above on line 16) that has this protocol "VoteControllerProtocol". So if go back to main storyboard all the child are inside the references. So have to pass that VC to every single one of them. 
+    let voteController = VoteController()
 }
